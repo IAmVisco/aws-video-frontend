@@ -1,32 +1,67 @@
-import { Button, Flex, FlexProps, HStack, Icon, Text } from '@chakra-ui/react';
-import { MdHowToReg, MdLogin } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Button, Flex, FlexProps, HStack, Icon, Text, useColorMode } from '@chakra-ui/react';
+import { BsMoonStarsFill, BsSun } from 'react-icons/bs';
+import { MdAdd, MdHowToReg, MdLogin, MdLogout } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../hooks/useUser.ts';
 
 import { Logo } from './Logo.tsx';
 
-const Header = (props: FlexProps) => (
-  <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" mb={4} p={4} {...props}>
-    <Logo />
+const Header = (props: FlexProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const user = useUser();
+  const navigate = useNavigate();
 
-    <HStack align="center" justify="flex-end" spacing={2}>
-      <Link to="/signup">
-        <Button size="md" rounded="md" colorScheme="teal">
-          <Text display={{ base: 'none', md: 'initial' }} mr={2}>
-            Create Account
-          </Text>
-          <Icon as={MdHowToReg} />
+  const logOut = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
+  return (
+    <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" mb={4} p={4} {...props}>
+      <Logo />
+
+      <HStack align="center" justify="flex-end" spacing={2}>
+        <Button title="Toggle Color Mode" onClick={toggleColorMode} variant="ghost" w="fit-content">
+          {colorMode === 'light' ? <BsMoonStarsFill /> : <BsSun />}
         </Button>
-      </Link>
-      <Link to="/login">
-        <Button size="md" rounded="md" bg="transparent">
-          <Text display={{ base: 'none', md: 'initial' }} mr={2}>
-            Login
-          </Text>
-          <Icon as={MdLogin} />
-        </Button>
-      </Link>
-    </HStack>
-  </Flex>
-);
+        {user ? (
+          <>
+            <Button size="md" rounded="md" colorScheme="teal">
+              <Text display={{ base: 'none', md: 'initial' }} mr={2}>
+                Upload
+              </Text>
+              <Icon as={MdAdd} fontSize={18} />
+            </Button>
+            <Button size="md" rounded="md" variant="ghost" onClick={logOut}>
+              <Text display={{ base: 'none', md: 'initial' }} mr={2}>
+                Logout
+              </Text>
+              <Icon as={MdLogout} />
+            </Button>
+          </>
+        ) : (
+          <>
+            <Link to="/signup">
+              <Button size="md" rounded="md" colorScheme="teal">
+                <Text display={{ base: 'none', md: 'initial' }} mr={2}>
+                  Create Account
+                </Text>
+                <Icon as={MdHowToReg} />
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button size="md" rounded="md" variant="ghost">
+                <Text display={{ base: 'none', md: 'initial' }} mr={2}>
+                  Login
+                </Text>
+                <Icon as={MdLogin} />
+              </Button>
+            </Link>
+          </>
+        )}
+      </HStack>
+    </Flex>
+  );
+};
 
 export { Header };

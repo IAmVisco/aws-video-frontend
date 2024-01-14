@@ -42,14 +42,14 @@ export const LoginForm = ({ mode }: { mode: 'login' | 'signup' }) => {
       });
 
   return (
-    <Flex align="center" justify="center" bg={useColorModeValue('gray.50', 'gray.800')}>
+    <Flex align="center" justify="center">
       <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
         <Stack align="center">
           <Heading fontSize="4xl" textAlign="center">
             {isLogin ? 'Login' : 'Sign up'}
           </Heading>
         </Stack>
-        <Box rounded="lg" bg={useColorModeValue('white', 'gray.700')} boxShadow="lg" p={8} minW="350px">
+        <Box rounded="lg" bg={useColorModeValue('gray.50', 'gray.700')} boxShadow="lg" p={8} minW="350px">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={2}>
               <FormControl isRequired isInvalid={!!errors.name}>
@@ -59,7 +59,7 @@ export const LoginForm = ({ mode }: { mode: 'login' | 'signup' }) => {
                   type="text"
                   {...register('name', {
                     required: 'Username is required',
-                    minLength: { value: 5, message: 'Minimum length should be 6' },
+                    minLength: { value: 6, message: 'Minimum length should be 6' },
                   })}
                 />
                 <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
