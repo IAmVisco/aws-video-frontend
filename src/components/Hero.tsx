@@ -26,7 +26,7 @@ export const Hero = () => (
       >
         Sing up to upload
       </Heading>
-      <Link to="singup">
+      <Link to="/signup">
         <Button borderRadius="8px" py="4" px="4" size="lg" colorScheme="teal">
           <Text mr={2}>Create Account</Text>
           <Icon as={MdHowToReg} />

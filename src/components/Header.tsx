@@ -9,7 +9,7 @@ const Header = (props: FlexProps) => (
     <Logo />
 
     <HStack align="center" justify="flex-end" spacing={2}>
-      <Link to="/singup">
+      <Link to="/signup">
         <Button size="md" rounded="md" colorScheme="teal">
           <Text display={{ base: 'none', md: 'initial' }} mr={2}>
             Create Account

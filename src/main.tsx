@@ -3,20 +3,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Hero } from './components/Hero.tsx';
-import { BaseLayout } from './layouts/BaseLayout.tsx';
+import { Home } from './pages/Home.tsx';
+import { Login } from './pages/Login.tsx';
+import { SignUp } from './pages/SignUp.tsx';
 import { theme } from './theme.ts';
-
-const Home = () => (
-  <BaseLayout>
-    <Hero />
-  </BaseLayout>
-);
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
   },
 ]);
 
