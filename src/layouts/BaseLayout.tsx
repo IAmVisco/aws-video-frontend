@@ -3,7 +3,7 @@ import React from 'react';
 import { Header } from '../components/Header.tsx';
 
 export const BaseLayout = ({ children, ...rest }: { children: React.ReactNode }) => (
-  <Flex direction="column" align="center" m="0 auto" {...rest}>
+  <Flex direction="column" m="0 auto" {...rest}>
     <Header />
     {children}
   </Flex>

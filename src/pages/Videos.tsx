@@ -1,5 +1,6 @@
-import { Button, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
+import { Button, Icon, Spinner, Text, VStack, Wrap, WrapItem } from '@chakra-ui/react';
 import { MdReplay } from 'react-icons/md';
+import { VideoCard } from '../components/VideoCard.tsx';
 import { useVideos } from '../hooks/useVideos.ts';
 
 export const Videos = () => {
@@ -19,10 +20,12 @@ export const Videos = () => {
   }
 
   return (
-    <>
+    <Wrap spacing={2} m={5}>
       {videos.map((video) => (
-        <div key={video.id}>{video.title}</div>
+        <WrapItem key={video.id}>
+          <VideoCard video={video} />
+        </WrapItem>
       ))}
-    </>
+    </Wrap>
   );
 };

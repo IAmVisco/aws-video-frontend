@@ -1,13 +1,15 @@
-import { Button, Flex, FlexProps, HStack, Icon, Text, useColorMode } from '@chakra-ui/react';
+import { Button, Flex, FlexProps, HStack, Icon, Text, useColorMode, useDisclosure } from '@chakra-ui/react';
 import { BsMoonStarsFill, BsSun } from 'react-icons/bs';
 import { MdAdd, MdHowToReg, MdLogin, MdLogout } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser.ts';
 
 import { Logo } from './Logo.tsx';
+import { UploadModal } from './UploadModal.tsx';
 
 const Header = (props: FlexProps) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useUser();
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const Header = (props: FlexProps) => {
         </Button>
         {user ? (
           <>
-            <Button size="md" rounded="md" colorScheme="teal">
+            <Button size="md" rounded="md" colorScheme="teal" onClick={onOpen}>
               <Text display={{ base: 'none', md: 'initial' }} mr={2}>
                 Upload
               </Text>
@@ -60,6 +62,7 @@ const Header = (props: FlexProps) => {
           </>
         )}
       </HStack>
+      <UploadModal isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };
