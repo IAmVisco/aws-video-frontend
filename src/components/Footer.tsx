@@ -3,7 +3,7 @@ import { MdLaunch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => (
-  <HStack justify="center" mt={2}>
+  <HStack justify="center" mt={5} mb={5}>
     <ChakraLink as={Link} to="https://github.com/IAmVisco/aws-video-frontend" target="_blank" rel="noopener noreferrer">
       Frontend code <Icon as={MdLaunch} pt={1} />
     </ChakraLink>

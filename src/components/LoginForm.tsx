@@ -102,7 +102,7 @@ export const LoginForm = ({ mode }: { mode: 'login' | 'signup' }) => {
               </FormControl>
 
               <Button
-                loadingText="Submitting"
+                loadingText={isLogin ? 'Logging you in...' : 'Creating your account...'}
                 size="lg"
                 colorScheme="teal"
                 isLoading={isSubmitting}

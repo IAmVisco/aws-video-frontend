@@ -8,8 +8,8 @@ export const Hero = () => (
     justify={{ base: 'center', md: 'space-around' }}
     direction={{ base: 'column', md: 'row' }}
     wrap="nowrap"
-    minH="60vh"
     px={8}
+    my={8}
   >
     <Stack spacing={4} w={{ base: '80%', md: '40%' }} align={['center', 'center', 'flex-start', 'flex-start']}>
       <Heading as="h1" size="xl" fontWeight="bold" color="primary.800" textAlign={['center', 'center', 'left', 'left']}>
