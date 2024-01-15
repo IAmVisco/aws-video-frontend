@@ -16,6 +16,7 @@ import {
   Progress,
   Stack,
   Text,
+  Textarea,
   UseDisclosureReturn,
   useToast,
 } from '@chakra-ui/react';
@@ -38,7 +39,7 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
   } = useForm<VideoFormValues>();
   const toast = useToast();
   const [progress, setProgress] = useState(0);
-  const video = getValues('video');
+  const [title, video] = getValues(['title', 'video']);
 
   const onCloseModal = () => {
     reset();
@@ -47,7 +48,7 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
 
   const onSubmit = (values: VideoFormValues) => {
     if (!video?.name) {
-      setError('video', { message: ' Req', type: 'required' });
+      setError('video', { message: 'Video is required', type: 'required' });
       return;
     }
     // eslint-disable-next-line consistent-return
@@ -56,19 +57,19 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
       .then(() => {
         toast({
           title: 'Video uploaded',
-          description: 'It will take some time to upload it to AWS. Check back later.',
+          description: 'The video is processing. Check back in a bit.',
           status: 'success',
-          duration: 2000,
+          duration: 3000,
         });
         onCloseModal();
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
         toast({
           title: 'Something went wrong',
           description: 'Check console or come back later.',
           status: 'error',
-          duration: 2000,
+          duration: 3000,
         });
       })
       .finally(() => {
@@ -84,6 +85,9 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
     },
     onDropAccepted: (files) => {
       setValue('video', files[0]);
+      if (!title) {
+        setValue('title', files[0].name);
+      }
     },
   });
 
@@ -118,7 +122,13 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
               </FormControl>
               <FormControl isInvalid={!!errors.description}>
                 <InputGroup>
-                  <Input id="description" placeholder="Description" {...register('description')} />
+                  <Textarea
+                    id="description"
+                    placeholder="Description"
+                    {...register('description')}
+                    rows={3}
+                    resize="none"
+                  />
                 </InputGroup>
                 <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
                 <Text

@@ -6,6 +6,7 @@ export interface Video {
   title: string;
   fileName: string;
   description?: string;
+  duration?: number;
   createdAt: string;
   authorId: string;
 }
@@ -53,6 +54,16 @@ class VideosService {
         if (progressEvent.total) setProgress(Math.round((progressEvent.loaded * 100) / progressEvent.total));
       },
     });
+  }
+
+  async deleteVideo(id: string): Promise<void> {
+    const { data } = await this.axios.delete(`/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    return data;
   }
 }
 
