@@ -24,7 +24,7 @@ export const Hero = () => (
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Sing up to upload
+        Sign up to upload
       </Heading>
       <Link to="/signup">
         <Button borderRadius="8px" py="4" px="4" size="lg" colorScheme="teal">

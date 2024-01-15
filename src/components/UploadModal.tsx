@@ -155,12 +155,15 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
                     {/* @ts-expect-error */}
                     <Input {...getInputProps()} {...register('video')} />
                     <Text align="center">
-                      {isDragActive ? 'Drop the files here...' : 'Drop some files here, or click to select files'}
+                      {isDragActive ? 'Drop the files here...' : 'Drop .mp4/.webm files here, or click to select'}
                     </Text>
+                    <Text align="center">Max 100MB</Text>
                   </Box>
                   {video?.name && (
                     <HStack justify="space-between" align="center" w="100%">
-                      <Text fontSize={18}>{video.name}</Text>
+                      <Text fontSize={18} style={{ overflowWrap: 'anywhere' }}>
+                        {video.name}
+                      </Text>
                       <Icon
                         as={MdClose}
                         color="red.500"

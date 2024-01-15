@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Logo = () => (
   <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
     <Icon as={FaPlay} fontSize={32} color="teal.200" />
-    <Text fontWeight="bold" fontSize={24} ml={2} _hover={{ textDecoration: 'underline' }}>
+    <Text fontWeight="bold" fontSize={24} ml={2}>
       AWS Videos
     </Text>
   </Link>
