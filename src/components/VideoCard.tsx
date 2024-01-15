@@ -6,11 +6,11 @@ import {
   CardBody,
   Heading,
   Icon,
+  Link as ChakraLink,
   Stack,
   Tag,
   Text,
   useColorModeValue,
-  VStack,
 } from '@chakra-ui/react';
 import { MdDelete, MdLaunch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ export const VideoCard = ({ video }: { video: Video }) => {
         transform: 'scale(1.02)',
       }}
     >
-      <CardBody p={3}>
+      <CardBody p={3} alignContent="space-between" position="relative">
         <Box position="relative">
           <AspectRatio ratio={16 / 9}>
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -56,15 +56,14 @@ export const VideoCard = ({ video }: { video: Video }) => {
             </Tag>
           ) : null}
         </Box>
-        <Link to={`${CLOUDFRONT_URL}/${user?.name}/${video.fileName}`} target="_blank" rel="noopener noreferrer">
-          <Stack
-            mt="6"
-            spacing="3"
-            _hover={{
-              textDecoration: 'underline',
-            }}
-          >
-            <Heading size="md">
+        <ChakraLink
+          as={Link}
+          to={`${CLOUDFRONT_URL}/${user?.name}/${video.fileName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Stack mt="6" spacing="3">
+            <Heading size="md" mb={video.description ? 0 : 10}>
               {video.title} <Icon as={MdLaunch} pt={1} />
             </Heading>
             {video.description ? (
@@ -77,17 +76,16 @@ export const VideoCard = ({ video }: { video: Video }) => {
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
                 }}
+                mr={12}
               >
                 {video.description}
               </Text>
             ) : null}
           </Stack>
-        </Link>
-        <VStack align="flex-end">
-          <Button colorScheme="red" size="sm" onClick={onDeleteClick}>
-            <Icon as={MdDelete} />
-          </Button>
-        </VStack>
+        </ChakraLink>
+        <Button colorScheme="red" size="sm" onClick={onDeleteClick} position="absolute" bottom={3} right={3}>
+          <Icon as={MdDelete} />
+        </Button>
       </CardBody>
     </Card>
   );

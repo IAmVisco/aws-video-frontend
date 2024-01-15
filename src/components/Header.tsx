@@ -7,7 +7,7 @@ import { useUser } from '../hooks/useUser.ts';
 import { Logo } from './Logo.tsx';
 import { UploadModal } from './UploadModal.tsx';
 
-const Header = (props: FlexProps) => {
+export const Header = (props: FlexProps) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useUser();
@@ -19,7 +19,7 @@ const Header = (props: FlexProps) => {
   };
 
   return (
-    <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" mb={4} p={4} {...props}>
+    <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" p={4} {...props}>
       <Logo />
 
       <HStack align="center" justify="flex-end" spacing={2}>
@@ -66,5 +66,3 @@ const Header = (props: FlexProps) => {
     </Flex>
   );
 };
-
-export { Header };
