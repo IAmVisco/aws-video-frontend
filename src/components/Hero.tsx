@@ -9,7 +9,7 @@ export const Hero = () => (
     direction={{ base: 'column', md: 'row' }}
     wrap="nowrap"
     px={8}
-    my={8}
+    my={10}
   >
     <Stack spacing={4} w={{ base: '80%', md: '40%' }} align={['center', 'center', 'flex-start', 'flex-start']}>
       <Heading as="h1" size="xl" fontWeight="bold" color="primary.800" textAlign={['center', 'center', 'left', 'left']}>

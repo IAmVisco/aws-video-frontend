@@ -60,6 +60,7 @@ export const LoginForm = ({ mode }: { mode: 'login' | 'signup' }) => {
                   {...register('name', {
                     required: 'Username is required',
                     minLength: { value: 6, message: 'Minimum length should be 6' },
+                    maxLength: { value: 32, message: 'Must be under 32 symbols' },
                   })}
                 />
                 <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
@@ -82,6 +83,7 @@ export const LoginForm = ({ mode }: { mode: 'login' | 'signup' }) => {
                     {...register('password', {
                       required: 'Password is required',
                       minLength: { value: 6, message: 'Minimum length should be 6' },
+                      maxLength: { value: 64, message: 'Must be under 64 symbols' },
                     })}
                   />
                   <InputRightElement h="full">

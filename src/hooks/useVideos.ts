@@ -4,7 +4,7 @@ import { Video, videosService } from '../services/VideosService.ts';
 export const useVideos = () => {
   const [userVideos, setUserVideos] = useState<Video[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('false');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setIsLoading(true);

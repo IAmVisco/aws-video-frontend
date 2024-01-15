@@ -107,7 +107,8 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
                   type="text"
                   {...register('title', {
                     required: 'Title is required',
-                    minLength: { value: 6, message: 'Minimum length should be 6' },
+                    minLength: { value: 6, message: 'Minimum length must be 6' },
+                    maxLength: { value: 255, message: 'Must be under 255 symbols' },
                   })}
                 />
                 <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
@@ -125,7 +126,7 @@ export const UploadModal = ({ isOpen, onClose }: Pick<UseDisclosureReturn, 'isOp
                   <Textarea
                     id="description"
                     placeholder="Description"
-                    {...register('description')}
+                    {...register('description', { maxLength: { value: 1024, message: 'Must be under 1024 symbols' } })}
                     rows={3}
                     resize="none"
                   />
