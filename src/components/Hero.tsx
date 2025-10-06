@@ -35,7 +35,12 @@ export const Hero = () => (
     </Stack>
 
     <Box w={{ base: '100%', sm: '100%', md: '50%' }} mt={{ base: 12, md: 0 }}>
-      <Image src="https://source.unsplash.com/rf6ywHVkrlY" rounded="1rem" shadow="2xl" alt="random CTA image" />
+      <Image
+        src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=100&auto=format"
+        rounded="1rem"
+        shadow="2xl"
+        alt="Random CTA image"
+      />
     </Box>
   </Flex>
 );
